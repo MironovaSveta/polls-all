@@ -137,5 +137,12 @@ E.g. for poll app:
 * Question "results" page -- displays results for a particular question
 * Vote action -- handles voting for a particular choice in a particular question
 
+each view is responsible for returning HttpResponse object or raising an exception such as Http404
 
 27. write more views
+    in polls/views.py
+
+28. add these new views into the polls.urls module
+    in polls/urls.py
+
+29. write views that actually do something
