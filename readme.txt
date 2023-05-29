@@ -157,3 +157,6 @@ templates
 31. update view to use the template
 
 32. learn about a shortcut: render()
+
+33. raising a 404 error
+    try, except raise Http404
