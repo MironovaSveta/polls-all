@@ -44,3 +44,98 @@ Create app
 
 9. Point the root URLconf to the polls.urls module
    modify mysite/urls.py
+
+#######################################################################################
+Database setup
+
+10. Switch from default SQLite to PostgreSQL
+    in file mysite/mysite/settings.py
+
+11. install Postgres.app
+    configure the $PATH variable
+    check by typing "which psql"
+
+12. create the database
+    12.1 psql
+    12.2 CREATE USER mydatabaseuser;                                                                                            
+         CREATE DATABASE mydatabase OWNER mydatabaseuser;
+    12.3 \q
+
+13. (myvenv) $ python3 manage.py migrate
+    looks at the INSTALLED_APPS settings and creates any necessary database tables
+
+#######################################################################################
+Create models
+
+14. Edit classes Question, Choice at mysite/polls/models.py
+
+15. add 'polls.apps.PollsConfig' to mysite/mysite/settings.py
+
+16. activate models
+    python3 manage.py makemigrations polls
+
+17. see what SQL that migration would run
+    python3 manage.py sqlmigrate polls 0001
+
+18. create model tables
+    python3 manage.py migrate
+
+######################################################################################
+Django API
+
+19. python3 manage.py shell
+
+20. explore the database API
+
+>>> from polls.models import Choice, Question
+>>> Question.objects.all()
+<QuerySet []>
+>>> from django.utils import timezone
+>>> q = Question(question_text="What's new?", pub_date=timezone.now())
+>>> q.save()
+>>> q.id
+1
+>>> q.question_text
+"What's new?"
+>>> q.pub_date
+datetime.datetime(2023, 5, 26, 16, 11, 37, 760741, tzinfo=datetime.timezone.utc)
+>>> q.question_text = "What's up?"
+>>> q.save()
+>>> Question.objects.all()
+<QuerySet [<Question: Question object (1)>]>
+
+21. add methods to classes Question, Choice
+    __str__ -- important to add
+
+######################################################################################
+creating an admin user
+
+22. python manage.py createsuperuser
+    admin - password
+
+23. start the development server
+    python manage.py runserver
+
+24. go to /admin/ on your local domain -- e.g. http://127.0.0.1:8000/
+
+25. enter the admin site
+    you should see the Django admin index page
+
+26. make the poll app modifiable in the admin
+    change polls/admin.py
+
+#####################################################################################
+views
+
+a view is a "type" of web page in Django app that generally serves a specific function and has a specific template
+a view is represented by a python function (or method, in the case of class-based views)
+a URLconf maps URL patterns to views
+
+E.g. for poll app:
+* Question "index" page -- displays the latest few questions
+* Question "detail" page -- displays a question text, with no results but with a form to vote
+* Question "results" page -- displays results for a particular question
+* Vote action -- handles voting for a particular choice in a particular question
+
+
+27. write more views
