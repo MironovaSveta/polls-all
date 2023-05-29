@@ -225,3 +225,74 @@ TypeError: 'RelatedManager' object is not subscriptable
     generic view needs: model, primary key of the object
 
     by default, DetailView uses a template called <all name>/<model name>_detail.html, etc.
+
+##################################################################################
+automated testing
+
+43. create a test
+    polls.tests.py
+
+44. run tests
+    python manage.py test polls
+
+svetlanamironova=# ALTER USER mydatabaseuser CREATEDB;
+ALTER ROLE
+svetlanamironova-# \q
+svetlanamironova@MacBook-Air-Svetlana ~/D/r/d/p/mysite (main)> python manage.py test polls
+Found 1 test(s).
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+F
+======================================================================
+FAIL: test_was_published_recently_with_future_question (polls.tests.QuestionModelTests)
+was_published_recently() returns False for questions whose pub_date
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/svetlanamironova/Documents/repo/django-apps/poll-application/mysite/polls/tests.py", line 20, in test_was_published_recently_with_future_question
+    self.assertIs(future_question.was_published_recently(), False)
+AssertionError: True is not False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.009s
+
+FAILED (failures=1)
+Destroying test database for alias 'default'...
+svetlanamironova@MacBook-Air-Svetlana ~/D/r/d/p/mysite (main) [1]> 
+
+45. fixing the bug
+    polls/models.py
+
+46. run tests again
+
+svetlanamironova@MacBook-Air-Svetlana ~/D/r/d/p/mysite (main) [1]> python manage.py test polls
+Found 1 test(s).
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.003s
+
+OK
+Destroying test database for alias 'default'...
+
+47. Django test client
+    python manage.py shell
+    from django.test.utils import setup_test_environment
+    setup_test_environment()
+      installs a template renderer, does not set up a test database
+    from django.test import Client
+    client = Client()
+
+    response = client.get("/")
+      Not Found: /
+    response.status_code
+      404
+
+    from django.urls import reverse
+    response = client.get(reverse("polls:index"))
+    response.status_code
+      200
+    response.content
+      b'\n    <ul>\n    \n        <li><a href="/polls/1/">What&#x27;s up?</a></li>\n    \n    </ul>\n'
+    response.context["latest_question_list"]
+      <QuerySet [<Question: What's up?>]>
