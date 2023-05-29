@@ -207,3 +207,21 @@ TypeError: 'RelatedManager' object is not subscriptable
 (1, {'polls.Choice': 1})
 >>> q.choice_set.all()
 <QuerySet [<Choice: Not much>, <Choice: The sky>, <Choice: Just hacking>]>
+
+42. use generic views: less code is better
+    detail() and results() views are redunadant, index() view is similar
+    these views represent a common case of basic web development:
+      * get data from the database according to a parameter passed in the URL
+      * load a template
+      * return the rendered template
+    it is common => a shortcut, called the "generic views" system
+
+    - amend URLconf
+      polls/urls.py
+    - amend views
+      polls/views.py
+      use two generic views: ListView ("display a list of objects") and DetailView ("display a detail page for a particular type of object")
+
+    generic view needs: model, primary key of the object
+
+    by default, DetailView uses a template called <all name>/<model name>_detail.html, etc.
