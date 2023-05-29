@@ -169,3 +169,41 @@ templates
 
 37. add namespaces to URLconf
     because Django should differentiate between apps
+
+###################################################################################
+add form
+
+38. polls/templates/polls/detail.html
+    set method = post!
+      because the form alters data server-side
+    all POST forms that are targeted at internal URLs should use the csrf_token
+
+39. polls/views.py
+    returns an HttpResponseRedirect instead of HttpResponse
+      it is a good practice after successfully dealing with POST data
+    !!! a small problem: a race condition. appears when two users try to vote at the same time
+        because a new value of votes computes and saves it back to the database
+
+40. polls/templates/polls/results.html
+
+41. add choices
+>>> from polls.models import Choice, Question
+>>> q = Question.objects.get(pk=1)
+>>> q.choice_set.all()
+<QuerySet [<Choice: Not much>, <Choice: Not much>]>
+>>> q.choice_set.create(choice_text="The sky", votes=0)
+<Choice: The sky>
+>>> q.choice_set.create(choice_text="Just hacking", votes=0)
+<Choice: Just hacking>
+>>> q.choice_set.all()
+<QuerySet [<Choice: Not much>, <Choice: Not much>, <Choice: The sky>, <Choice: Just hacking>]>
+>>> q.ch
+q.check(      q.choice_set(
+>>> q.choice_set[1]
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+TypeError: 'RelatedManager' object is not subscriptable
+>>> q.choice_set.filter(id=1).delete()
+(1, {'polls.Choice': 1})
+>>> q.choice_set.all()
+<QuerySet [<Choice: Not much>, <Choice: The sky>, <Choice: Just hacking>]>
