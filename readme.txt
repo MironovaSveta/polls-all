@@ -160,3 +160,5 @@ templates
 
 33. raising a 404 error
     try, except raise Http404
+
+34. learn about a shortcut: get_object_or_404()
