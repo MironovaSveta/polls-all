@@ -296,3 +296,7 @@ Destroying test database for alias 'default'...
       b'\n    <ul>\n    \n        <li><a href="/polls/1/">What&#x27;s up?</a></li>\n    \n    </ul>\n'
     response.context["latest_question_list"]
       <QuerySet [<Question: What's up?>]>
+
+48. a test for a view
+    polls/tests.py, in class QuestionIndexViewTests -- test index view
+                  , in class QuestionDetailViewTests -- test detail view
