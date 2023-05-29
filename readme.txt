@@ -155,3 +155,5 @@ templates
     creare polls/templates/polls/index.html
 
 31. update view to use the template
+
+32. learn about a shortcut: render()
