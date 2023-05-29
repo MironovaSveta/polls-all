@@ -162,3 +162,5 @@ templates
     try, except raise Http404
 
 34. learn about a shortcut: get_object_or_404()
+
+35. use the template system
