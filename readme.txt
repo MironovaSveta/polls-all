@@ -166,3 +166,6 @@ templates
 35. use the template system
 
 36. remove hardcoded URLs in templates
+
+37. add namespaces to URLconf
+    because Django should differentiate between apps
