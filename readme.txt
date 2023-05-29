@@ -145,4 +145,13 @@ each view is responsible for returning HttpResponse object or raising an excepti
 28. add these new views into the polls.urls module
     in polls/urls.py
 
+####################################################################################
+templates
+
 29. write views that actually do something
+    the page's design is hard-coded in the view, so use Django's template system 
+
+30. create polls/templates/ directory
+    creare polls/templates/polls/index.html
+
+31. update view to use the template
