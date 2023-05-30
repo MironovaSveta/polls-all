@@ -300,3 +300,16 @@ Destroying test database for alias 'default'...
 48. a test for a view
     polls/tests.py, in class QuestionIndexViewTests -- test index view
                   , in class QuestionDetailViewTests -- test detail view
+
+Good rules-of-thumb include having:
+  * a separate TestClass for each model or view
+  * a separate test method for each set of conditions you want to test
+  * test method names that describe their function
+
+##########################################################################################################
+static files
+
+static files -- images, JavaScript, CSS
+  necessary to render the complete web page
+
+django.contrib.staticfiles collects static files from each of your applications into a single location
