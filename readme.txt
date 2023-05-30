@@ -313,3 +313,7 @@ static files -- images, JavaScript, CSS
   necessary to render the complete web page
 
 django.contrib.staticfiles collects static files from each of your applications into a single location
+
+49. polls/static/polls/style.css
+
+50. add previous path to polls/templates/polls/index.html
