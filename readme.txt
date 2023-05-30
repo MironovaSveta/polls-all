@@ -330,3 +330,7 @@ customize the admin form
 
 53. customize the admin change list
     include the was_published_recently() method
+
+54. configure the was_published_recently() method via the decorator
+
+55. add filter
