@@ -327,3 +327,6 @@ customize the admin form
 
 52. add related objects
     two ways: register Choice / add a bunch of Choices directly when create the Question model
+
+53. customize the admin change list
+    include the was_published_recently() method
