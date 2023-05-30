@@ -326,4 +326,4 @@ customize the admin form
     * split the fields into fieldsets
 
 52. add related objects
-    two ways: register Choice
+    two ways: register Choice / add a bunch of Choices directly when create the Question model
