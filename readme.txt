@@ -347,3 +347,11 @@ customize the admin form
     change site_header in polls/templates/admin/base_site.html
 
     it is approach how to override templates
+
+##########################################################################################################
+third-party packages
+
+57. install django debug toolbar
+    python -m pip install django-debug-toolbar
+
+58. Get help at Django forum, join the Django Discord server
