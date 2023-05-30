@@ -334,3 +334,16 @@ customize the admin form
 54. configure the was_published_recently() method via the decorator
 
 55. add filter
+
+56. customize project's templates
+    add DIRS to mysite/mysite/settings.py
+    DIRS -- a list of filesystem directories to check when loading Django templates
+
+    find Django source files
+      python -c "import django; print(django.__path__)"
+    
+    copy admin/base_site.html from Django source files (django/contrib/admin/templates) to polls/templates/admin/base_site.html
+
+    change site_header in polls/templates/admin/base_site.html
+
+    it is approach how to override templates
