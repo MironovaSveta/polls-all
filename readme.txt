@@ -317,3 +317,13 @@ django.contrib.staticfiles collects static files from each of your applications 
 49. polls/static/polls/style.css
 
 50. add previous path to polls/templates/polls/index.html
+
+##########################################################################################################
+customize the admin form
+
+51. polls/admin.py
+    * reorder the fields
+    * split the fields into fieldsets
+
+52. add related objects
+    two ways: register Choice
